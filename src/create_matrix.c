@@ -10,79 +10,112 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-void	init_matrix(t_matrix *arena)
+void	init_struct_variables(t_matrix *monkey)
 {
-	arena->map = NULL;
-	arena->map_copy = NULL;
-	arena->map_hight = 0;
-	arena->map_width = 0;
-	arena->player_count = 0;
-	arena->collect_count = 0;
-	arena->exit_count = 0;
+	monkey->map = NULL;
+	monkey->map_cpy = NULL;
+	monkey->map_y = 0;
+	monkey->map_x = 0;
+	monkey->p_pos_y = 0;
+	monkey->p_pos_x = 0;
+	monkey->p_amount = 0;
+	monkey->p_counter = 0;
+	monkey->c_amount = 0;
+	monkey->c_counter = 0;
+	monkey->e_amount = 0;
+	monkey->e_counter = 0;
 }
 
-void	get_matrix(t_matrix *arena, char *av)
+void	get_matrix(t_matrix *monkey, char *av)
 {
 	int	fd;
 
-	count_map_size(arena, av);
-	check_gamepiece_amount(arena);
+	count_map_variables(monkey, av);
+	check_gamepiece_amount(monkey);
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
-		error_fd(arena, fd);
-	arena->map = malloc(sizeof(char *) * (arena->map_hight + 1));
-	if (!map)
-		error_malloc(arena, fd);
-	arena->map_copy = malloc(sizeof(char *) * (arena->map_hight + 1));
-	if (!arena->map_copy)
-		error_malloc(arena, fd);
-	create_matrix(arena, fd);
-	if (check_map_enclosed(arena))
-		error_map_walls(arena, fd);
+		error_fd(fd);
+	monkey->map = malloc(sizeof(char *) * (monkey->map_y + 1));
+	if (!monkey->map)
+		error_malloc(monkey, fd);
+	monkey->map[monkey->map_y] = NULL;
+	monkey->map_cpy = malloc(sizeof(char *) * (monkey->map_y + 1));
+	if (!monkey->map_cpy)
+		error_malloc(monkey, fd);
+	monkey->map_cpy[monkey->map_y] = NULL;
+	create_matrix(monkey, fd);
+	if (check_map_enclosed(monkey))
+		error_map_walls(monkey, fd);
 	close(fd);
 }
 
-void	count_map_variables(t_matrix *arena, char *av)
+void	count_map_variables(t_matrix *monkey, char *av)
 {
 	char	*temp;
 	int	fd;
 
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
-		error_fd(arena, fd);
+		error_fd(fd);
 	temp = get_next_line(fd);
-	arena->map_width = ft_strlen(temp); 
+	monkey->map_x = ft_strlen(temp); 
 	while (temp)
 	{
-		if (!(map_is_rectangular(arena, temp)))
+		if (!(map_is_rectangular(monkey, temp)))
 		{
 			ft_putstr_fd("Error: map is not rectangular\n", 1);
 			free(temp);
 			close(fd);
 			exit(1);
 		}
-		count_gamepieces(arena, temp);
+		count_gamepiece_amount(monkey, temp, monkey->map_y);
 		free(temp);
-		arena->map_hight++;
+		monkey->map_y++;
 		temp = get_next_line(fd);
 	}
 	close(fd);
 }
 
-void	create_matrix(t_matrix *arena, int fd)
+void	count_gamepiece_amount(t_matrix *monkey, char *line, int y)
+{
+	int	x;
+
+	x = 0;
+	while (line[x])
+	{
+		if (line[x] == 'C')
+			monkey->c_amount++;
+		else if (line[x] == 'E')
+			monkey->e_amount++;
+		else if (line[x] == 'P')
+		{
+			monkey->p_amount++;
+			monkey->p_pos_y = y; 
+			monkey->p_pos_x = x;
+		}
+		x++;
+	}
+}
+
+void	create_matrix(t_matrix *monkey, int fd)
 {
 	int	y;
 	char	*line;
+	char	*temp;
 
 	y = 0;
-	while (y < arena->map_width)
+	while (y < monkey->map_y)
 	{
 		line = get_next_line(fd);
-		arena->map[y] = line;
-		arena->map_copy[y] = ft_strdup(arena->map[y]);
+		if (!line)
+			error_malloc(monkey, fd);
+		monkey->map[y] = line;
+		monkey->map_cpy[y] = ft_strdup(monkey->map[y]);
 		y++;
 	}
-	// NOTE: should I free line here ? prob no cause it frees the og line ?
+	temp = get_next_line(fd);
+	if (!temp)
+		free(temp);
 }

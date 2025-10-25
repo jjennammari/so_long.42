@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 void	check_args(char *av, int ac)
 {
@@ -55,9 +55,8 @@ void	check_if_directory(char *av)
 	temp = malloc(sizeof(char) * 2);
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
-	{
-		error_malloc(
-	}
+		error_fd(fd);
+	temp = malloc(sizeof(char) * 2);
 	read_return = read(fd, temp, 2);
 	if (read_return == -1)
 	{

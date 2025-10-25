@@ -10,52 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
-void	error_fd(t_matrix *arena, int fd)
+void	error_fd(int fd)
 {
 	ft_putstr_fd("Error: failed to open the map file\n", 1);
 	close(fd);
 	exit(1);
 }
 
-void	error_malloc(t_matrix *arena, int fd)
+void	error_malloc(t_matrix *monkey, int fd)
 {
 	ft_putstr_fd("Error: malloc failed\n", 1);
-	if (arena->map)
-		free_matrix(arena);
-	if (arena->map_copy)
-		free_matrix(arena);
+	if (monkey->map)
+		free_matrix(monkey);
+	if (monkey->map_cpy)
+		free_matrix(mokney);
 	close(fd);
 	exit(1);
 }
 
-void	error_map_walls(t_matrix *arena, int fd)
+void	error_map_walls(t_matrix *monkey, int fd)
 {
 	ft_putstr_fd("Error: map is not enclosed with walls\n", 1);
-	free_matrix(arena);
+	free_matrix(monkey);
 	close(fd);
 	exit(1);
 }
 
-void	free_matrix(t_matrix arena)
+void	free_matrix(t_matrix *monkey)
 {
 	int	y;
 
 	y = 0;
-	if (arena->map)
+	if (monkey->map)
 	{
-		while (arena->map[y])
-			free(arena->map[y++]);
-		free(arena->map);
-		arena->map = NULL;
+		while (y < monkey->map_y)
+			free(monkey->map[y++]);
+		free(monkey->map);
+		monkey->map = NULL;
 	}
 	y = 0;
-	if (arena->map_copy)
+	if (monkey->map_cpy)
 	{
-		while (arena->map_copy[y])
-			free(arena->map_copy[y++]);
-		free(arena->map_copy);
-		arena->map_copy = NULL;
+		while (y < monkey->map_y)
+			free(monkey->map_cpy[y++]);
+		free(monkey->map_cpy);
+		monkey->map_cpy = NULL;
 	}
 }
