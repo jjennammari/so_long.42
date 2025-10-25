@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 void	init_struct_variables(t_matrix *monkey)
 {

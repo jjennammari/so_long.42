@@ -25,12 +25,13 @@ int	main(int ac, char **av)
 	y = 0;
 	while (monkey.map[y])
 	{
-		printf("%s", monkey.map[y]);
+		printf("%s\n", monkey.map[y]);
 		y++;
 	}
-	ft_putstr_fd("Parsing works", 1);
+	ft_putstr_fd("Parsing works\n", 1);
 	flood_fill(&monkey, monkey.p_pos_y, monkey.p_pos_x);
 	validate_map_accessability(&monkey);
 	ft_putstr_fd("Map is valid\n", 1);
+	free_matrix(&monkey);
 	return (0);
 }

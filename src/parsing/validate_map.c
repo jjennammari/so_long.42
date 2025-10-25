@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 int	map_is_rectangular(t_matrix *monkey, char *line)
 {

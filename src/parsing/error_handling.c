@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 void	error_fd(int fd)
 {
@@ -25,7 +25,7 @@ void	error_malloc(t_matrix *monkey, int fd)
 	if (monkey->map)
 		free_matrix(monkey);
 	if (monkey->map_cpy)
-		free_matrix(mokney);
+		free_matrix(monkey);
 	close(fd);
 	exit(1);
 }

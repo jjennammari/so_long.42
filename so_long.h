@@ -17,17 +17,14 @@
 #  define BUFFER_SIZE 5
 # endif
 
-# include <stdio.h> // POISTA ENNEN PALAUTUSTA JA VAIHDA KAIKKI PRINTF FT_PRINTF
 # include <stdlib.h> // for malloc, free, exit
 # include <fcntl.h> // for open
 # include <unistd.h> // for read, close
-//# include "./libft/libft.h"
-
-typedef struct	s_pos
-{
-	int	y;
-	int	x;
-}	t_pos;
+# include <stdbool.h>
+# include "./archives/libft/libft.h"
+# include "./archives/ft_printf/ft_printf.h"// TODO: delete ft_printf before submit
+# include "./archives/get_next_line/get_next_line.h"
+//# include "./archives/minilibx-linux/mlx.h"
 
 typedef struct	s_matrix
 {
@@ -45,19 +42,6 @@ typedef struct	s_matrix
 	int	e_counter;
 }	t_matrix;
 
-typedef struct	s_matrix
-{
-	char	**map;
-	char	**map_cpy;
-	int	map_hight;
-	int	map_width;
-	int	player_count;
-	int	collect_count;
-	int	exit_count;
-	t_pos	player;
-	t_flood	counter;
-	t_game	game;
-}	t_matrix;
 // main.c
 int main(int ac, char **av);
 
@@ -86,8 +70,5 @@ void	error_fd(int fd);
 void	error_malloc(t_matrix *monkey, int fd);
 void	error_map_walls(t_matrix *monkey, int fd);
 void	free_matrix(t_matrix *monkey);
-
-// flood_fill.c
-//void    flood_fill(t_matrix *arena, int y, int x);
 
 #endif
