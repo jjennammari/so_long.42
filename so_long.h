@@ -24,7 +24,16 @@
 # include "./archives/libft/libft.h"
 # include "./archives/ft_printf/ft_printf.h"// TODO: delete ft_printf before submit
 # include "./archives/get_next_line/get_next_line.h"
-//# include "./archives/minilibx-linux/mlx.h"
+# include "./archives/minilibx-linux/mlx.h"
+
+# define FLOOR_PATH "textures/floor.xpm"
+# define WALL_PATH "textures/wall.xpm"
+# define EXIT_OPEN_PATH "textures/exit_open.xpm"
+# define EXIT_CLOSED_PATH "textures/exit_closed.xpm"
+# define COLLECTABLE_PATH "textures/collectable.xpm"
+# define PLAYER_PATH "textures/player.xpm"
+
+# define TILE_SIZE 32;
 
 typedef struct	s_matrix
 {
@@ -40,6 +49,15 @@ typedef struct	s_matrix
 	int	c_counter;
 	int	e_amount;
 	int	e_counter;
+	void	*mlx;
+	void	*window;
+	void	*floor;
+	void	*wall;
+	void	*exit;
+	void	*player;
+	void	*collectable;
+	int	move_counter;
+	int	key_pressed;
 }	t_matrix;
 
 // main.c
@@ -70,5 +88,15 @@ void	error_fd(int fd);
 void	error_malloc(t_matrix *monkey, int fd);
 void	error_map_walls(t_matrix *monkey, int fd);
 void	free_matrix(t_matrix *monkey);
+
+// open_game_window.c
+void	open_game_window(t_matrix *monkey);
+void	init_img(t_matrix *monkey);
+void	*load_img(t_matrix *monkey, char *path);
+
+// render_img.c
+void	render_img(t_matrix *monkey);
+void	render_tie(t_matrix *monkey, int y, int x);
+void	put_img_to_window(t_matrix *monkey, void *img, int y, int x);
 
 #endif

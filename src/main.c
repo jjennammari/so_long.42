@@ -32,6 +32,9 @@ int	main(int ac, char **av)
 	flood_fill(&monkey, monkey.p_pos_y, monkey.p_pos_x);
 	validate_map_accessability(&monkey);
 	ft_putstr_fd("Map is valid\n", 1);
+	open_game_window(&monkey);
+	init_img(&monkey);
+	render_img(&monkey);
 	free_matrix(&monkey);
 	return (0);
 }

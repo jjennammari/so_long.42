@@ -26,6 +26,15 @@ void	init_struct_variables(t_matrix *monkey)
 	monkey->c_counter = 0;
 	monkey->e_amount = 0;
 	monkey->e_counter = 0;
+	monkey->mlx = NULL;
+	monkey->window = NULL;
+	monkey->floor = NULL;
+	monkey->wall = NULL;
+	monkey->exit = NULL;
+	monkey->collectable = NULL;
+	monkey->player = NULL;
+	monkey->move_counter = 0;
+	monkey->key_pressed = 0;
 }
 
 void	get_matrix(t_matrix *monkey, char *av)

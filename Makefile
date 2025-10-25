@@ -15,11 +15,11 @@ NAME = so_long
 LIBFT = ./archives/libft/libft.a 
 FT_PRINTF = ./archives/ft_printf/ft_printf.a
 GNL = ./archives/get_next_line/get_next_line.a
-#MINILIBX = ./archives/minilibx-linux/libmlx.a
+MINILIBX = ./archives/minilibx-linux/libmlx.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
-#MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11
+MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11
 
 COMPILE_OBJ = $(CC) $(CFLAGS) -c $< -o $@
 
@@ -30,9 +30,9 @@ FILES += src/parsing/create_matrix.c
 FILES += src/parsing/error_handling.c
 FILES += src/main.c
 FILES += src/parsing/validate_map.c
-#FILES += src/rendering/open_game_window.c
-#FILES += src/rendering/error_game.c
-#FILES += src/rendering/render_game.c
+FILES += src/create_game/open_game_window.c
+FILES += src/create_game/error_game.c
+FILES += src/create_game/render_img.c
 #FILES += src/rendering/events.c
 
 SRC = $(FILES)
@@ -41,7 +41,7 @@ OBJ = $(SRC:.c=.o)
 
 .PHONY: all clean fclean re
 
-all: $(LIBFT) $(FT_PRINTF) $(GNL) $(NAME)
+all: $(LIBFT) $(FT_PRINTF) $(GNL) $(MINILIBX) $(NAME)
 
 $(LIBFT):
 	@make -C ./archives/libft
@@ -55,8 +55,13 @@ $(GNL):
 	@make -C ./archives/get_next_line
 	@echo ">>> $(GNL) compiled <<<"
 
-$(NAME): $(OBJ) $(LIBFT) $(FT_PRINTF) $(GNL)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GNL) -o $(NAME)
+$(MINILIBX):
+	@make -C ./archives/minilibx-linux
+	@echo ">>> &(MINILIBX) compiled <<<"
+
+$(NAME): $(OBJ) $(LIBFT) $(FT_PRINTF) $(GNL) $(MINILIBX)
+
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(FT_PRINTF) $(GNL) -L./archives/minilibx-linux -lmlx -lX11 -lXext -lbsd -lm -o $(NAME)
 	@echo ">>> $(NAME) created <<<"
 
 %.o: %.c
@@ -64,7 +69,7 @@ $(NAME): $(OBJ) $(LIBFT) $(FT_PRINTF) $(GNL)
 
 clean:
 	$(RM) $(OBJ)
-#	$(RM) $(MINILIBX) ./archives/minilibx-linux/*.o
+	$(RM) $(MINILIBX) ./archives/minilibx-linux/*.o
 	$(RM) $(GNL) ./archives/get_next_line/*.o
 	$(RM) $(FT_PRINTF) ./archives/ft_printf/*.o
 	$(RM) $(LIBFT) ./archives/libft/*.o
