@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	int	y;
 
 	ft_putstr_fd("Starting program\n", 1);
-	check_args(av[1], ac);
+	check_args(av[1], ac);//TODO: correct when wrong file extension
 	ft_putstr_fd("Args OK\n", 1);
 	init_struct_variables(&monkey);
 	get_matrix(&monkey, av[1]);

@@ -49,7 +49,7 @@ int main(int ac, char **av);
 void    check_args(char *av, int ac);
 void    check_ac_amount(int ac);
 void    check_file_extension(char *av);
-void    check_if_directory(char *av);
+void	check_if_empty(char *av);
 
 // create_matrix.c
 void    init_struct_variables(t_matrix *monkey);

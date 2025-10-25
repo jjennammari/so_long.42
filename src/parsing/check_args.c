@@ -16,7 +16,7 @@ void	check_args(char *av, int ac)
 {
 	check_ac_amount(ac);
 	check_file_extension(av);
-	check_if_directory(av);
+	check_if_empty(av);
 }
 
 void	check_ac_amount(int ac)
@@ -33,7 +33,7 @@ void	check_file_extension(char *av)
 	int	name_len;
 
 	name_len = ft_strlen(av);
-	if (name_len < 5)
+	if (name_len < 4)
 	{
 		ft_putstr_fd("Error: Missing file extension", 1);
 		exit(1);
@@ -45,28 +45,26 @@ void	check_file_extension(char *av)
 	}
 }
 
-void	check_if_directory(char *av)
+void	check_if_empty(char *av)
 {
-	char	*temp;
 	int	fd;
-	int	read_return;
+	char	*temp;
 
-	read_return = 0;
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		error_fd(fd);
-	temp = malloc(sizeof(char) * 2);
-	read_return = read(fd, temp, 2);
-	if (read_return == -1)
+	temp = get_next_line(fd);
+	if (!temp)
 	{
-		ft_putstr_fd("Error: File is invalid", 1);
+		ft_putstr_fd("Error: map is empty\n", 1);
 		close(fd);
-		free(temp);
 		exit(1);
 	}
-	else
+	free(temp);
+	while (temp)
 	{
-		close(fd);
+		temp = get_next_line(fd);
 		free(temp);
 	}
+	close(fd);
 }
