@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 	open_game_window(&monkey);
 	init_img(&monkey);
 	render_img(&monkey);
+	mlx_hook(monkey.window, 17, 0, end_game, &monkey);
 	free_matrix(&monkey);
 	return (0);
 }

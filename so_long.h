@@ -34,6 +34,15 @@
 # define PLAYER_PATH "textures/player.xpm"
 
 # define TILE_SIZE 32
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_UP 65362
+# define KEY_LEFT 65361
+# define KEY_DOWN 65364
+# define KEY_RIGHT 65363
 
 typedef struct	s_matrix
 {
@@ -90,13 +99,26 @@ void	error_map_walls(t_matrix *monkey, int fd);
 void	free_matrix(t_matrix *monkey);
 
 // open_game_window.c
-void	open_game_window(t_matrix *monkey);//TODO: do safetychecks
+void	open_game_window(t_matrix *monkey);
 void	init_img(t_matrix *monkey);
-void	*load_img(t_matrix *monkey, char *path);//TODO: do safetychecks
+void	*load_img(t_matrix *monkey, char *path);
 
 // render_img.c
 void	render_img(t_matrix *monkey);
 void	render_tile(t_matrix *monkey, int y, int x);
 void	put_img_to_window(t_matrix *monkey, void *img, int y, int x);
+
+// key_movements.c
+void	key_movements(t_matrix *monkey);//TODO: undifined end_game
+int	key_press(int keycode, t_matrix *monkey);
+int	key_release(int keycode, t_matrix *monkey);//TODO: undifined end_game
+void	move_player(t_matrix *monkey, int dir_x, int dir_y);
+void	update_player_position(t_matrix *monkey, int new_x, int new_y, int dir_x);
+
+// game_utils.c
+
+// end_game.c
+void	end_game(t_matrix *monkey, char *message);
+void	destroy_game(t_matrix *monkey);
 
 #endif

@@ -31,9 +31,10 @@ FILES += src/parsing/error_handling.c
 FILES += src/main.c
 FILES += src/parsing/validate_map.c
 FILES += src/create_game/open_game_window.c
-FILES += src/create_game/error_game.c
 FILES += src/create_game/render_img.c
-#FILES += src/rendering/events.c
+FILES += src/create_game/key_movements.c
+FILES += src/create_game/game_utils.c
+FILES += src/create_game/end_game.c
 
 SRC = $(FILES)
 
