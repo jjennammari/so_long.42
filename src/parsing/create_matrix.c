@@ -20,6 +20,8 @@ void	init_struct_variables(t_matrix *monkey)
 	monkey->map_x = 0;
 	monkey->p_pos_y = 0;
 	monkey->p_pos_x = 0;
+	monkey->e_pos_y = 0;
+	monkey->e_pos_x = 0;
 	monkey->p_amount = 0;
 	monkey->p_counter = 0;
 	monkey->c_amount = 0;
@@ -35,6 +37,7 @@ void	init_struct_variables(t_matrix *monkey)
 	monkey->player = NULL;
 	monkey->move_counter = 0;
 	monkey->key_pressed = 0;
+	monkey->exit_ready = false;
 }
 
 void	get_matrix(t_matrix *monkey, char *av)
@@ -97,7 +100,11 @@ void	count_gamepiece_amount(t_matrix *monkey, char *line, int y)
 		if (line[x] == 'C')
 			monkey->c_amount++;
 		else if (line[x] == 'E')
+		{
 			monkey->e_amount++;
+			monkey->e_pos_y = y;
+			monkey->e_pos_x = x;
+		}
 		else if (line[x] == 'P')
 		{
 			monkey->p_amount++;

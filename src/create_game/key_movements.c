@@ -24,7 +24,7 @@ int	key_press(int keycode, t_matrix *monkey)
 		return (0);
 	monkey->key_pressed = 1;
 	if (keycode == KEY_ESC)
-		end_game(monkey, NULL);
+		end_game(monkey, "Okay fine, see ya!\n");
 	else if (keycode == KEY_W || keycode == KEY_UP)
 		move_player(monkey, 0, -1);
 	else if (keycode == KEY_S || keycode == KEY_DOWN)
@@ -65,9 +65,9 @@ void	move_player(t_matrix *monkey, int dir_x, int dir_y)
 	if (next_tile == 'E' && monkey->c_counter > 0)
 		return ;
 	if (next_tile == 'E')
-		handle_exit(monkey);
+		define_exit(monkey);
 	else if (next_tile == 'C')
-		handle_collectibles(monkey, new_x, new_y);
+		update_exit_status(monkey, new_x, new_y);
 	update_player_position(monkey, new_x, new_y, dir_x);
 }
 
