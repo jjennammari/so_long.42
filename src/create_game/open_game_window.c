@@ -19,13 +19,10 @@ void	open_game_window(t_matrix *monkey)
 
 	w_y = monkey->map_y * TILE_SIZE;
 	w_x = monkey->map_x * TILE_SIZE;
-	monkey->mlx = init_mlx();
-	if (!monkey->mlx)
-		//TODO: handle errors
+	monkey->mlx = mlx_init();
 	monkey->window = mlx_new_window(monkey->mlx, w_x, w_y, "so_long");
-	if (!monkey->window)
-		//TODO: handle_errors
 }
+
 
 void	init_img(t_matrix *monkey)
 {
@@ -45,7 +42,5 @@ void	*load_img(t_matrix *monkey, char *path)
 	img_y = TILE_SIZE;
 	img_x = TILE_SIZE;
 	img = mlx_xpm_file_to_image(monkey->mlx, path, &img_x, &img_y);
-	if (!img)
-		//TODO: handle errors
 	return (img);
 }

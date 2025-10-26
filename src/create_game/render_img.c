@@ -19,7 +19,7 @@ void	render_img(t_matrix *monkey)
 
 	mlx_clear_window(monkey->mlx, monkey->window);
 	y = 0;
-	while (y < monkey->map_y;
+	while (y < monkey->map_y)
 	{
 		x = 0;
 		while (x < monkey->map_x)
@@ -31,18 +31,18 @@ void	render_img(t_matrix *monkey)
 	}
 }
 
-void	render_tie(t_matrix *monkey, int y, int x)
+void	render_tile(t_matrix *monkey, int y, int x)
 {
 	if (monkey->map[y][x] == '0')
-		put_image_to_window(monkey, monkey->floor, y, x);
+		put_img_to_window(monkey, monkey->floor, y, x);
 	else if (monkey->map[y][x] == '1')
-		put_image_to_window(monkey, monkey->wall, y, x);
+		put_img_to_window(monkey, monkey->wall, y, x);
 	else if (monkey->map[y][x] == 'P')
-		put_image_to_window(monkey, monkey->player, y, x);
+		put_img_to_window(monkey, monkey->player, y, x);
 	else if (monkey->map[y][x] == 'C')
-		put_image_to_window(monkey, monkey->collectable, y, x);
+		put_img_to_window(monkey, monkey->collectable, y, x);
 	else if (monkey->map[y][x] == 'E')
-		put_image_to_window(monkey, monkey->exit, y, x);
+		put_img_to_window(monkey, monkey->exit, y, x);
 }
 
 void	put_img_to_window(t_matrix *monkey, void *img, int y, int x)

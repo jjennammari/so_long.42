@@ -33,7 +33,7 @@
 # define COLLECTABLE_PATH "textures/collectable.xpm"
 # define PLAYER_PATH "textures/player.xpm"
 
-# define TILE_SIZE 32;
+# define TILE_SIZE 32
 
 typedef struct	s_matrix
 {
@@ -66,7 +66,7 @@ int main(int ac, char **av);
 // check_args.c
 void    check_args(char *av, int ac);
 void    check_ac_amount(int ac);
-void    check_file_extension(char *av);
+void    check_file_extension(char *av);//TODO: check wrong file extension
 void	check_if_empty(char *av);
 
 // create_matrix.c
@@ -90,13 +90,13 @@ void	error_map_walls(t_matrix *monkey, int fd);
 void	free_matrix(t_matrix *monkey);
 
 // open_game_window.c
-void	open_game_window(t_matrix *monkey);
+void	open_game_window(t_matrix *monkey);//TODO: do safetychecks
 void	init_img(t_matrix *monkey);
-void	*load_img(t_matrix *monkey, char *path);
+void	*load_img(t_matrix *monkey, char *path);//TODO: do safetychecks
 
 // render_img.c
 void	render_img(t_matrix *monkey);
-void	render_tie(t_matrix *monkey, int y, int x);
+void	render_tile(t_matrix *monkey, int y, int x);
 void	put_img_to_window(t_matrix *monkey, void *img, int y, int x);
 
 #endif
