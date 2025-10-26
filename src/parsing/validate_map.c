@@ -36,13 +36,13 @@ void	check_gamepiece_amount(t_matrix *monkey)
 	if (monkey->c_amount < 1)
 	{
 		ft_putstr_fd("Error: no collectables\n", 1);
-			free_matrix(monkey);
+		free_matrix(monkey);
 		exit(1);
 	}
 	if (monkey->e_amount != 1)
 	{
 		ft_putstr_fd("Error: incorrect amount of exits\n", 1);
-			free_matrix(monkey);
+		free_matrix(monkey);
 		exit(1);
 	}
 }

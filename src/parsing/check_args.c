@@ -23,7 +23,8 @@ void	check_ac_amount(int ac)
 {
 	if (ac != 2)
 	{
-		ft_putstr_fd("Error: launch with two args: ./so_long map_file.ber\n", 1);
+		ft_putstr_fd("Error: launch with two args:\
+		 ./so_long map_file.ber\n", 1);
 		exit(1);
 	}
 }

@@ -18,24 +18,17 @@ int	main(int ac, char **av)
 
 	ft_putstr_fd("Starting program\n", 1);
 	check_args(av[1], ac);
-	ft_putstr_fd("Args OK\n", 1);
 	init_struct_variables(&monkey);
 	get_matrix(&monkey, av[1]);
-	ft_putstr_fd("Parsing works\n", 1);
+	search_characters(&monkey);
 	flood_fill(&monkey, monkey.p_pos_y, monkey.p_pos_x);
 	validate_map_accessability(&monkey);
-	ft_putstr_fd("Map is valid\n", 1);
 	open_game_window(&monkey);
-	ft_putstr_fd("Window opens OK\n", 1);
 	init_img(&monkey);
 	render_img(&monkey);
-	ft_putstr_fd("Render OK\n", 1);
 	key_movements(&monkey);
-	ft_putstr_fd("Key movements work\n", 1);
 	mlx_hook(monkey.window, 17, 0, handle_end, &monkey);
-	ft_putstr_fd("2: Key movements work\n", 1);
 	mlx_loop(monkey.mlx);
-	ft_putstr_fd("Loop ok\n", 1);
 	free_matrix(&monkey);
 	return (0);
 }

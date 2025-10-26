@@ -27,6 +27,7 @@ RM = rm -rf
 
 FILES = src/parsing/check_args.c
 FILES += src/parsing/create_matrix.c
+FILES += src/parsing/check_characters.c
 FILES += src/parsing/error_handling.c
 FILES += src/main.c
 FILES += src/parsing/validate_map.c

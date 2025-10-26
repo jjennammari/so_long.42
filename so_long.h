@@ -88,6 +88,10 @@ void	count_map_variables(t_matrix *monkey, char *av);
 void	count_gamepiece_amount(t_matrix *monkey, char *line, int y);
 void	create_matrix(t_matrix *monkey, int fd);
 
+// check_characters.c
+void	search_characters(t_matrix *monkey);
+int		check_correct(char c);
+
 // validate_map.c
 int		map_is_rectangular(t_matrix *monkey, char *line);
 void	check_gamepiece_amount(t_matrix *monkey);//NOTE: added some matrix frees
