@@ -68,7 +68,7 @@ typedef struct	s_matrix
 	void	*player;
 	void	*collectable;
 	int	move_counter;
-	int	key_pressed;
+	bool	key_pressed;
 	bool	exit_ready;
 }	t_matrix;
 
