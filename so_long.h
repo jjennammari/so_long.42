@@ -22,7 +22,7 @@
 # include <unistd.h> // for read, close
 # include <stdbool.h>
 # include "./archives/libft/libft.h"
-# include "./archives/ft_printf/ft_printf.h"// TODO: delete ft_printf before submit
+# include "./archives/ft_printf/ft_printf.h"
 # include "./archives/get_next_line/get_next_line.h"
 # include "./archives/minilibx-linux/mlx.h"
 
@@ -115,14 +115,15 @@ void	put_img_to_window(t_matrix *monkey, void *img, int y, int x);
 void	key_movements(t_matrix *monkey);
 int	key_press(int keycode, t_matrix *monkey);
 int	key_release(int keycode, t_matrix *monkey);//TODO: undifined end_game
-void	move_player(t_matrix *monkey, int dir_x, int dir_y);
-void	update_player_position(t_matrix *monkey, int new_x, int new_y, int dir_x);
+void	move_player(t_matrix *monkey, int dir_y, int dir_x);
+void	update_p_pos(t_matrix *monkey, int new_y, int new_x, int dir_x);
 
 // game_utils.c
 void	define_exit(t_matrix *monkey);
 void	update_exit_status(t_matrix *monkey, int new_y, int new_x);
 
 // end_game.c
+int	handle_end(t_matrix *monkey);
 void	end_game(t_matrix *monkey, char *message);
 void	destroy_game(t_matrix *monkey);
 

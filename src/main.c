@@ -35,8 +35,8 @@ int	main(int ac, char **av)
 	open_game_window(&monkey);
 	init_img(&monkey);
 	render_img(&monkey);
-	mlx_hook(monkey->window, 2, 1L << 0, key_press, &monkey);
-	mlx_hook(monkey.window, 17, 0, end_game, &monkey);
+	key_movements(&monkey);
+	mlx_hook(monkey.window, 17, 0, handle_end, &monkey);
 	mlx_loop(monkey.mlx);
 	free_matrix(&monkey);
 	return (0);

@@ -12,6 +12,12 @@
 
 #include "../../so_long.h"
 
+int	handle_end(t_matrix *monkey)
+{
+	end_game(monkey, NULL);
+	return (0);
+}
+
 void	end_game(t_matrix *monkey, char *message)
 {
 	if (message)
