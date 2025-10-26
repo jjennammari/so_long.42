@@ -24,7 +24,7 @@ int	key_press(int keycode, t_matrix *monkey)
 		return (0);
 	monkey->key_pressed = 1;
 	if (keycode == KEY_ESC)
-		end_game(monkey, "Okay fine, see ya!\n");
+		end_game(monkey, "Okay fine, see ya!");
 	else if (keycode == KEY_W || keycode == KEY_UP)
 		move_player(monkey, -1, 0);
 	else if (keycode == KEY_S || keycode == KEY_DOWN)

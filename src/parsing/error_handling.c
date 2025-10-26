@@ -12,6 +12,16 @@
 
 #include "../../so_long.h"
 
+void	handle_gnl(char *temp, int fd)
+{
+	free(temp);
+	while (temp)
+	{
+		temp = get_next_line(fd);
+		free(temp);
+	}
+}
+
 void	error_fd(int fd)
 {
 	ft_putstr_fd("Error: failed to open the map file\n", 1);

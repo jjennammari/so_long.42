@@ -47,5 +47,6 @@ void	render_tile(t_matrix *monkey, int y, int x)
 
 void	put_img_to_window(t_matrix *monkey, void *img, int y, int x)
 {
-	mlx_put_image_to_window(monkey->mlx, monkey->window, img, x * TILE_SIZE, y * TILE_SIZE);
+	mlx_put_image_to_window(monkey->mlx, monkey->window,
+		img, x * TILE_SIZE, y * TILE_SIZE);
 }

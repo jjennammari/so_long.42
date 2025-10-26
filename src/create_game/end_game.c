@@ -40,9 +40,15 @@ void	destroy_game(t_matrix *monkey)
 		mlx_destroy_image(monkey->mlx, monkey->collectable);
 	if (monkey->exit)
 		mlx_destroy_image(monkey->mlx, monkey->exit);
+	if (monkey->window)
+	{
+		mlx_destroy_window(monkey->mlx, monkey->window);
+		monkey->window = NULL;
+	}
 	if (monkey->mlx)
 	{
 		mlx_destroy_display(monkey->mlx);
 		free(monkey->mlx);
+		monkey->mlx = NULL;
 	}
 }

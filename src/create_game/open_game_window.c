@@ -27,7 +27,6 @@ void	open_game_window(t_matrix *monkey)
 		end_game(monkey, "Error: creating the game window\n");
 }
 
-
 void	init_img(t_matrix *monkey)
 {
 	monkey->wall = load_img(monkey, WALL_PATH);
@@ -39,8 +38,8 @@ void	init_img(t_matrix *monkey)
 
 void	*load_img(t_matrix *monkey, char *path)
 {
-	int	img_y;
-	int	img_x;
+	int		img_y;
+	int		img_x;
 	void	*img;
 
 	img_y = TILE_SIZE;

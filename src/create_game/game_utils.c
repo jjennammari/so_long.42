@@ -29,7 +29,7 @@ void	update_exit_status(t_matrix *monkey, int new_y, int new_x)
 	if (monkey->exit)
 		mlx_destroy_image(monkey->mlx, monkey->exit);
 	monkey->exit = mlx_xpm_file_to_image(monkey->mlx,
-		EXIT_OPEN_PATH, &(int){TILE_SIZE}, &(int){TILE_SIZE});
+			EXIT_OPEN_PATH, &(int){TILE_SIZE}, &(int){TILE_SIZE});
 	if (!monkey->exit)
 		end_game(monkey, "Error: creating exit open\n");
 	render_tile(monkey, monkey->e_pos_y, monkey->e_pos_x);

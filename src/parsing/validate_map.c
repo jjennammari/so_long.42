@@ -29,17 +29,21 @@ void	check_gamepiece_amount(t_matrix *monkey)
 	if (monkey->p_amount != 1)
 	{
 		ft_putstr_fd("Error: incorrect amount of players\n", 1);
-		exit(1);// NOTE: before this, free something ?
+		if (monkey->map || monkey->map_cpy)
+			free_matrix(monkey);
+		exit(1);
 	}
 	if (monkey->c_amount < 1)
 	{
 		ft_putstr_fd("Error: no collectables\n", 1);
-		exit(1);// NOTE: before this, free something ?
+			free_matrix(monkey);
+		exit(1);
 	}
 	if (monkey->e_amount != 1)
 	{
 		ft_putstr_fd("Error: incorrect amount of exits\n", 1);
-		exit(1);// NOTE: before this, free something?
+			free_matrix(monkey);
+		exit(1);
 	}
 }
 
@@ -51,14 +55,16 @@ int	check_map_enclosed(t_matrix *monkey)
 	x = 0;
 	while (x < monkey->map_x)
 	{
-		if ((monkey->map[0][x] != '1') || (monkey->map[monkey->map_y - 1][x] != '1'))
+		if ((monkey->map[0][x] != '1') ||
+			(monkey->map[monkey->map_y - 1][x] != '1'))
 			return (1);
 		x++;
 	}
 	y = 0;
 	while (y < monkey->map_y)
 	{
-		if ((monkey->map[y][0] != '1') || (monkey->map[y][monkey->map_x - 1] != '1'))
+		if ((monkey->map[y][0] != '1') ||
+			(monkey->map[y][monkey->map_x - 1] != '1'))
 			return (1);
 		y++;
 	}

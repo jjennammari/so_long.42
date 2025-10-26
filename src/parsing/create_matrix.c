@@ -66,19 +66,21 @@ void	get_matrix(t_matrix *monkey, char *av)
 void	count_map_variables(t_matrix *monkey, char *av)
 {
 	char	*temp;
-	int	fd;
+	int		fd;
 
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
 		error_fd(fd);
 	temp = get_next_line(fd);
-	monkey->map_x = ft_strlen(temp); 
+	monkey->map_x = ft_strlen(temp);
 	while (temp)
 	{
 		if (!(map_is_rectangular(monkey, temp)))
 		{
 			ft_putstr_fd("Error: map is not rectangular\n", 1);
-			free(temp);
+			handle_gnl(temp, fd);
+			if (!temp)
+				free(temp);
 			close(fd);
 			exit(1);
 		}
@@ -108,7 +110,7 @@ void	count_gamepiece_amount(t_matrix *monkey, char *line, int y)
 		else if (line[x] == 'P')
 		{
 			monkey->p_amount++;
-			monkey->p_pos_y = y; 
+			monkey->p_pos_y = y;
 			monkey->p_pos_x = x;
 		}
 		x++;
@@ -117,7 +119,7 @@ void	count_gamepiece_amount(t_matrix *monkey, char *line, int y)
 
 void	create_matrix(t_matrix *monkey, int fd)
 {
-	int	y;
+	int		y;
 	char	*line;
 	char	*temp;
 

@@ -44,22 +44,22 @@
 # define KEY_DOWN 65364
 # define KEY_RIGHT 65363
 
-typedef struct	s_matrix
+typedef struct s_matrix
 {
 	char	**map;
 	char	**map_cpy;
-	int	map_y;
-	int	map_x;
-	int	p_pos_y;
-	int	p_pos_x;
-	int	e_pos_y;
-	int	e_pos_x;
-	int	p_amount;
-	int	p_counter;
-	int	c_amount;
-	int	c_counter;
-	int	e_amount;
-	int	e_counter;
+	int		map_y;
+	int		map_x;
+	int		p_pos_y;
+	int		p_pos_x;
+	int		e_pos_y;
+	int		e_pos_x;
+	int		p_amount;
+	int		p_counter;
+	int		c_amount;
+	int		c_counter;
+	int		e_amount;
+	int		e_counter;
 	void	*mlx;
 	void	*window;
 	void	*floor;
@@ -67,35 +67,36 @@ typedef struct	s_matrix
 	void	*exit;
 	void	*player;
 	void	*collectable;
-	int	move_counter;
+	int		move_counter;
 	bool	key_pressed;
 	bool	exit_ready;
 }	t_matrix;
 
 // main.c
-int main(int ac, char **av);
+int		main(int ac, char **av);
 
 // check_args.c
-void    check_args(char *av, int ac);
-void    check_ac_amount(int ac);
-void    check_file_extension(char *av);//TODO: check wrong file extension
+void	check_args(char *av, int ac);
+void	check_ac_amount(int ac);
+void	check_file_extension(char *av);//TODO: check wrong file extension
 void	check_if_empty(char *av);
 
 // create_matrix.c
-void    init_struct_variables(t_matrix *monkey);
-void    get_matrix(t_matrix *monkey, char *av);
-void    count_map_variables(t_matrix *monkey, char *av);
-void    count_gamepiece_amount(t_matrix *monkey, char *line, int y);
-void    create_matrix(t_matrix *monkey, int fd);
+void	init_struct_variables(t_matrix *monkey);
+void	get_matrix(t_matrix *monkey, char *av);
+void	count_map_variables(t_matrix *monkey, char *av);
+void	count_gamepiece_amount(t_matrix *monkey, char *line, int y);
+void	create_matrix(t_matrix *monkey, int fd);
 
 // validate_map.c
-int	map_is_rectangular(t_matrix *monkey, char *line);
-void    check_gamepiece_amount(t_matrix *monkey);
-int    check_map_enclosed(t_matrix *monkey);
+int		map_is_rectangular(t_matrix *monkey, char *line);
+void	check_gamepiece_amount(t_matrix *monkey);//NOTE: added some matrix frees
+int		check_map_enclosed(t_matrix *monkey);
 void	flood_fill(t_matrix *monkey, int y, int x);
 void	validate_map_accessability(t_matrix *monkey);
 
 // error_handling.c
+void	handle_gnl(char *temp, int fd);
 void	error_fd(int fd);
 void	error_malloc(t_matrix *monkey, int fd);
 void	error_map_walls(t_matrix *monkey, int fd);
@@ -113,8 +114,8 @@ void	put_img_to_window(t_matrix *monkey, void *img, int y, int x);
 
 // key_movements.c
 void	key_movements(t_matrix *monkey);
-int	key_press(int keycode, t_matrix *monkey);
-int	key_release(int keycode, t_matrix *monkey);//TODO: undifined end_game
+int		key_press(int keycode, t_matrix *monkey);
+int		key_release(int keycode, t_matrix *monkey);//TODO: undifined end_game
 void	move_player(t_matrix *monkey, int dir_y, int dir_x);
 void	update_p_pos(t_matrix *monkey, int new_y, int new_x);
 
@@ -123,7 +124,7 @@ void	define_exit(t_matrix *monkey);
 void	update_exit_status(t_matrix *monkey, int new_y, int new_x);
 
 // end_game.c
-int	handle_end(t_matrix *monkey);
+int		handle_end(t_matrix *monkey);
 void	end_game(t_matrix *monkey, char *message);
 void	destroy_game(t_matrix *monkey);
 

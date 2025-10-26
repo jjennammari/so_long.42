@@ -47,7 +47,7 @@ void	check_file_extension(char *av)
 
 void	check_if_empty(char *av)
 {
-	int	fd;
+	int		fd;
 	char	*temp;
 
 	fd = open(av, O_RDONLY);
