@@ -52,6 +52,8 @@ typedef struct	s_matrix
 	int	map_x;
 	int	p_pos_y;
 	int	p_pos_x;
+	int	e_pos_y;
+	int	e_pos_x;
 	int	p_amount;
 	int	p_counter;
 	int	c_amount;
@@ -67,6 +69,7 @@ typedef struct	s_matrix
 	void	*collectable;
 	int	move_counter;
 	int	key_pressed;
+	bool	exit_ready;
 }	t_matrix;
 
 // main.c
@@ -109,13 +112,15 @@ void	render_tile(t_matrix *monkey, int y, int x);
 void	put_img_to_window(t_matrix *monkey, void *img, int y, int x);
 
 // key_movements.c
-void	key_movements(t_matrix *monkey);//TODO: undifined end_game
+void	key_movements(t_matrix *monkey);
 int	key_press(int keycode, t_matrix *monkey);
 int	key_release(int keycode, t_matrix *monkey);//TODO: undifined end_game
 void	move_player(t_matrix *monkey, int dir_x, int dir_y);
 void	update_player_position(t_matrix *monkey, int new_x, int new_y, int dir_x);
 
 // game_utils.c
+void	define_exit(t_matrix *monkey);
+void	update_exit_status(t_matrix *monkey, int new_y, int new_x);
 
 // end_game.c
 void	end_game(t_matrix *monkey, char *message);
