@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.c                                        :+:      :+:    :+:   */
+/*   key_movements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jemustaj <jemustaj@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 20:55:18 by jemustaj          #+#    #+#             */
-/*   Updated: 2025/10/25 21:07:45 by jemustaj         ###   ########.fr       */
+/*   Created: 2025/10/26 01:34:58 by jemustaj          #+#    #+#             */
+/*   Updated: 2025/10/26 01:37:33 by jemustaj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	key_movements(t_matrix *monkey)
 {
-	mlx_hook(monkey.window, 2, 1L << 0, key_press, &monkey);
-	mlx_hook(monkey.window, 3, 1L << 1, key_release, &monkey);
-	mlx_hook(monkey.window, 17, 0, close_window, &monkey);
+	mlx_hook(monkey->window, 2, 1L << 0, key_press, &monkey);
+	mlx_hook(monkey->window, 3, 1L << 1, key_release, &monkey);
 }
 
 int	key_press(int keycode, t_matrix *monkey)
@@ -25,7 +24,7 @@ int	key_press(int keycode, t_matrix *monkey)
 		return (0);
 	monkey->key_pressed = 1;
 	if (keycode == KEY_ESC)
-		close_window(monkey);
+		end_game(monkey, NULL);
 	else if (keycode == KEY_W || keycode == KEY_UP)
 		move_player(monkey, 0, -1);
 	else if (keycode == KEY_S || keycode == KEY_DOWN)

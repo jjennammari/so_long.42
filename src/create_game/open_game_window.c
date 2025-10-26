@@ -20,7 +20,11 @@ void	open_game_window(t_matrix *monkey)
 	w_y = monkey->map_y * TILE_SIZE;
 	w_x = monkey->map_x * TILE_SIZE;
 	monkey->mlx = mlx_init();
+	if (!monkey->mlx)
+		end_game(monkey, "Error: creating connection with mlx\n");
 	monkey->window = mlx_new_window(monkey->mlx, w_x, w_y, "so_long");
+	if (!monkey->window)
+		end_game(monkey, "Error: creating the game window\n");
 }
 
 
@@ -42,5 +46,7 @@ void	*load_img(t_matrix *monkey, char *path)
 	img_y = TILE_SIZE;
 	img_x = TILE_SIZE;
 	img = mlx_xpm_file_to_image(monkey->mlx, path, &img_x, &img_y);
+	if (!img)
+		end_game(monkey, "Error: creating the image\n");
 	return (img);
 }
