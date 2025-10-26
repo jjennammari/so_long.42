@@ -14,8 +14,8 @@
 
 void	key_movements(t_matrix *monkey)
 {
-	mlx_hook(monkey->window, 2, 1L << 0, key_press, &monkey);
-	mlx_hook(monkey->window, 3, 1L << 1, key_release, &monkey);
+	mlx_hook(monkey->window, 2, 1L << 0, key_press, monkey);
+	mlx_hook(monkey->window, 3, 1L << 1, key_release, monkey);
 }
 
 int	key_press(int keycode, t_matrix *monkey)
@@ -30,9 +30,9 @@ int	key_press(int keycode, t_matrix *monkey)
 	else if (keycode == KEY_S || keycode == KEY_DOWN)
 		move_player(monkey, +1, 0);
 	else if (keycode == KEY_A || keycode == KEY_LEFT)
-		move_player(monkey, 0, 1);
+		move_player(monkey, 0, -1);
 	else if (keycode == KEY_D || keycode == KEY_RIGHT)
-		move_player(monkey, 0, 1);
+		move_player(monkey, 0, +1);
 	else
 		monkey->key_pressed = 0;
 	return (0);
@@ -56,8 +56,8 @@ void	move_player(t_matrix *monkey, int dir_y, int dir_x)
 
 	new_y = monkey->p_pos_y + dir_y;
 	new_x = monkey->p_pos_x + dir_x;
-	if (new_y < 0 || new_y >= monkey->map_x
-		|| new_x < 0 || new_x >= monkey->map_y)
+	if (new_y < 0 || new_y >= monkey->map_y
+		|| new_x < 0 || new_x >= monkey->map_x)
 		return ;
 	next_tile = monkey->map[new_y][new_x];
 	if (next_tile == '1')
@@ -81,8 +81,8 @@ void	update_p_pos(t_matrix *monkey, int new_y, int new_x)
 	old_x = monkey->p_pos_x;
 	monkey->map[old_y][old_x] = '0';
 	monkey->map[new_y][new_x] = 'P';
-	monkey->p_pos_x = new_y;
-	monkey->p_pos_y = new_x;
+	monkey->p_pos_y = new_y;
+	monkey->p_pos_x = new_x;
 	monkey->move_counter++;
 	render_tile(monkey, old_y, old_x);
 	render_tile(monkey, new_y, new_x);

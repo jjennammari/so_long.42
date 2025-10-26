@@ -22,11 +22,10 @@ void	end_game(t_matrix *monkey, char *message)
 {
 	if (message)
 		ft_printf("%s\n", message);
-	if (monkey->map)
-		free_matrix(monkey);
-	if (monkey->map_cpy)
+	if (monkey->map || monkey->map_cpy)
 		free_matrix(monkey);
 	destroy_game(monkey);
+	exit(1);
 }
 
 void	destroy_game(t_matrix *monkey)
