@@ -23,7 +23,7 @@ void	check_ac_amount(int ac)
 {
 	if (ac != 2)
 	{
-		ft_putstr_fd("Error: Comple with two args: ./so_long map_file.ber", 1);
+		ft_putstr_fd("Error: launch with two args: ./so_long map_file.ber\n", 1);
 		exit(1);
 	}
 }
@@ -33,14 +33,14 @@ void	check_file_extension(char *av)
 	int	name_len;
 
 	name_len = ft_strlen(av);
-	if (name_len < 4)
+	if (name_len < 5 || av[name_len - 5] == '/')
 	{
-		ft_putstr_fd("Error: Missing file extension", 1);
+		ft_putstr_fd("Error: Missing file extension\n", 1);
 		exit(1);
 	}
 	if (ft_strncmp(&av[name_len - 4], ".ber", 4) != 0)
 	{
-		ft_putstr_fd("Error: Using wrong file extension", 1);
+		ft_putstr_fd("Error: Using wrong file extension\n", 1);
 		exit(1);
 	}
 }
