@@ -68,10 +68,10 @@ void	move_player(t_matrix *monkey, int dir_y, int dir_x)
 		define_exit(monkey);
 	else if (next_tile == 'C')
 		update_exit_status(monkey, new_y, new_x);
-	update_p_pos(monkey, new_y, new_x, dir_x);
+	update_p_pos(monkey, new_y, new_x);
 }
 
-void	update_p_pos(t_matrix *monkey, int new_x, int new_y, int dir_x)
+void	update_p_pos(t_matrix *monkey, int new_y, int new_x)
 {
 	int		old_x;
 	int		old_y;

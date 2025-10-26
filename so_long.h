@@ -116,7 +116,7 @@ void	key_movements(t_matrix *monkey);
 int	key_press(int keycode, t_matrix *monkey);
 int	key_release(int keycode, t_matrix *monkey);//TODO: undifined end_game
 void	move_player(t_matrix *monkey, int dir_y, int dir_x);
-void	update_p_pos(t_matrix *monkey, int new_y, int new_x, int dir_x);
+void	update_p_pos(t_matrix *monkey, int new_y, int new_x);
 
 // game_utils.c
 void	define_exit(t_matrix *monkey);
